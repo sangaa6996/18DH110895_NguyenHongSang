@@ -1,3 +1,4 @@
+import 'package:date_format/date_format.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nguyenhongsang_18dh110895/cart/components/checkoutcart.dart';
@@ -12,8 +13,6 @@ class Body extends StatefulWidget {
 
 class _BodyState extends State<Body> {
   List<Orders> orderdetails = Orders.getOrders();
-  double sum = 0.0;
-  var now = DateTime.now();
 
   @override
   void initState() {
@@ -37,9 +36,9 @@ class _BodyState extends State<Body> {
                     children: [
                       GestureDetector(
                         child: OrderItem(
-                          orderdetails[index].date,
-                          orderdetails[index].total,
-                        ),
+                            orderdetails[index].date,
+                            orderdetails[index].total,
+                            orderdetails[index].totalQuantity),
                         onTap: () {},
                       ),
                       Divider()
@@ -47,7 +46,6 @@ class _BodyState extends State<Body> {
                   );
                 }),
           ),
-          CheckOutCart(sum, now)
         ],
       ),
     );
@@ -57,8 +55,8 @@ class _BodyState extends State<Body> {
 class OrderItem extends StatelessWidget {
   DateTime date;
   double total;
-
-  OrderItem(this.date, this.total);
+  int totalQuantity;
+  OrderItem(this.date, this.total, this.totalQuantity);
 
   @override
   Widget build(BuildContext context) {
@@ -66,9 +64,10 @@ class OrderItem extends StatelessWidget {
       color: Color(0xFFF5F5F5),
       padding: EdgeInsets.all(16),
       child: Row(children: [
-        Expanded(child: Text(date.toString())),
+        Expanded(child: Text(formatDate(date, [yyyy, '-', mm, '-', dd]))),
+        Spacer(),
+        Expanded(child: Text(totalQuantity.toString())),
         Expanded(child: Text(total.toString())),
-        Icon(Icons.delete_outlined)
       ]),
     );
   }

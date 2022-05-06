@@ -29,16 +29,27 @@ class _AddProductToCartState extends State<AddProductToCart> {
       child: RaisedButton(
         onPressed: () {
           Cart cart = Cart();
-          cart.addProductToCart(widget.product, widget.quantity);
-          print(cart.getCart().length.toString());
-          Fluttertoast.showToast(
-              msg: "Add to cart",
-              toastLength: Toast.LENGTH_SHORT,
-              gravity: ToastGravity.BOTTOM,
-              timeInSecForIosWeb: 1,
-              backgroundColor: Colors.red,
-              textColor: Colors.white,
-              fontSize: 16.0);
+          if (widget.quantity > 0) {
+            cart.addProductToCart(widget.product, widget.quantity);
+            print(cart.getCart().length.toString());
+            Fluttertoast.showToast(
+                msg: "Add to cart",
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.BOTTOM,
+                timeInSecForIosWeb: 1,
+                backgroundColor: Colors.red,
+                textColor: Colors.white,
+                fontSize: 16.0);
+          } else {
+            Fluttertoast.showToast(
+                msg: "Please increase quantity",
+                toastLength: Toast.LENGTH_SHORT,
+                gravity: ToastGravity.BOTTOM,
+                timeInSecForIosWeb: 1,
+                backgroundColor: Colors.red,
+                textColor: Colors.white,
+                fontSize: 16.0);
+          }
         },
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
         color: Colors.green,

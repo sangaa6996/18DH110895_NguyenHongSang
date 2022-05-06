@@ -5,6 +5,7 @@ import 'package:nguyenhongsang_18dh110895/SplashPage/SplashPage.dart';
 import 'package:nguyenhongsang_18dh110895/cart/cartpage.dart';
 import 'package:nguyenhongsang_18dh110895/category/category_page.dart';
 import 'package:nguyenhongsang_18dh110895/detail/productpage.dart';
+import 'package:nguyenhongsang_18dh110895/homepage/component/fragment/order_detail.dart';
 import 'package:nguyenhongsang_18dh110895/homepage/homepage.dart';
 import 'package:nguyenhongsang_18dh110895/order/orderPages.dart';
 

@@ -12,7 +12,7 @@ class Body extends StatefulWidget {
 class _BodyState extends State<Body> {
   List<CartItem> cartdetails = Cart().getCart();
   double sum = 0.0;
-  var now = DateTime.now();
+  DateTime now = DateTime.now();
 
   @override
   void initState() {
@@ -57,7 +57,7 @@ class _BodyState extends State<Body> {
                   );
                 }),
           ),
-          CheckOutCart(sum, now)
+          CheckOutCart(sum, now, cartdetails)
         ],
       ),
     );
@@ -66,7 +66,7 @@ class _BodyState extends State<Body> {
 
 class CartItem extends StatelessWidget {
   Products product;
-  var quantity;
+  int quantity;
 
   CartItem(this.product, this.quantity);
 

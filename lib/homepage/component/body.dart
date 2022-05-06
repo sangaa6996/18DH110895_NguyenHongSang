@@ -25,7 +25,6 @@ class _BodyState extends State<Body> {
       HomeDetail(),
       FavoriteDetail(Utilities.data),
       OrderDetail(),
-      HomeDetail(),
       AccountDetail()
     ];
 
