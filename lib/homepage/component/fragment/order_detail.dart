@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:nguyenhongsang_18dh110895/models/orders.dart';
 import 'package:nguyenhongsang_18dh110895/models/products.dart';
 
-class FavoriteDetail extends StatelessWidget {
-  List<Products?> products;
+class OrderDetail extends StatelessWidget {
+  List<Orders> orders = Orders.getOrders();
 
-  FavoriteDetail(this.products);
+  OrderDetail();
 
   @override
   Widget build(BuildContext context) {
-    print(products.length.toString());
+    print('-------------------------------------${orders.length}');
     return Expanded(
       child: Container(
         child: ListView.builder(
-            itemCount: products.length,
+            itemCount: orders.length,
             itemBuilder: (context, index) {
               return ProductItemList(
-                product: products[index],
+                orders[index],
               );
             }),
       ),
@@ -25,9 +26,9 @@ class FavoriteDetail extends StatelessWidget {
 }
 
 class ProductItemList extends StatelessWidget {
-  Products? product;
+  Orders order;
 
-  ProductItemList({this.product});
+  ProductItemList(this.order);
 
   @override
   Widget build(BuildContext context) {
@@ -38,14 +39,6 @@ class ProductItemList extends StatelessWidget {
         child: Row(
           children: [
             SizedBox(
-              width: 100,
-              height: 100,
-              child: Image.asset(
-                product!.image,
-                fit: BoxFit.fill,
-              ),
-            ),
-            SizedBox(
               width: 5,
             ),
             Expanded(
@@ -54,10 +47,10 @@ class ProductItemList extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(product!.title),
+                      Text(order.date.toString()),
                       Expanded(
                           child: Text(
-                        product!.description,
+                        order.total.toString(),
                         maxLines: 5,
                         overflow: TextOverflow.ellipsis,
                       ))

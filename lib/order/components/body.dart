@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nguyenhongsang_18dh110895/cart/components/checkoutcart.dart';
 import 'package:nguyenhongsang_18dh110895/models/carts.dart';
+import 'package:nguyenhongsang_18dh110895/models/orders.dart';
 import 'package:nguyenhongsang_18dh110895/models/products.dart';
 
 class Body extends StatefulWidget {
@@ -10,7 +11,7 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  List<CartItem> cartdetails = Cart().getCart();
+  List<Orders> orderdetails = Orders.getOrders();
   double sum = 0.0;
   var now = DateTime.now();
 
@@ -18,9 +19,6 @@ class _BodyState extends State<Body> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    cartdetails.forEach((item) {
-      sum = sum + item.product.price * item.quantity;
-    });
   }
 
   @override
@@ -33,24 +31,16 @@ class _BodyState extends State<Body> {
           Expanded(
             child: ListView.builder(
                 shrinkWrap: true,
-                itemCount: cartdetails.length,
+                itemCount: orderdetails.length,
                 itemBuilder: (context, index) {
                   return Column(
                     children: [
                       GestureDetector(
-                        child: CartItem(
-                          cartdetails[index].product,
-                          cartdetails[index].quantity,
+                        child: OrderItem(
+                          orderdetails[index].date,
+                          orderdetails[index].total,
                         ),
-                        onTap: () {
-                          setState(() {
-                            cartdetails.removeAt(index);
-                            sum = 0.0;
-                            cartdetails.forEach((item) {
-                              sum = sum + item.product.price * item.quantity;
-                            });
-                          });
-                        },
+                        onTap: () {},
                       ),
                       Divider()
                     ],
@@ -64,11 +54,11 @@ class _BodyState extends State<Body> {
   }
 }
 
-class CartItem extends StatelessWidget {
-  Products product;
-  var quantity;
+class OrderItem extends StatelessWidget {
+  DateTime date;
+  double total;
 
-  CartItem(this.product, this.quantity);
+  OrderItem(this.date, this.total);
 
   @override
   Widget build(BuildContext context) {
@@ -76,10 +66,8 @@ class CartItem extends StatelessWidget {
       color: Color(0xFFF5F5F5),
       padding: EdgeInsets.all(16),
       child: Row(children: [
-        SizedBox(width: 100, height: 100, child: Image.asset(product.image)),
-        Expanded(child: Text(product.title)),
-        Expanded(child: Text(product.price.toString())),
-        Expanded(child: Text(quantity.toString())),
+        Expanded(child: Text(date.toString())),
+        Expanded(child: Text(total.toString())),
         Icon(Icons.delete_outlined)
       ]),
     );

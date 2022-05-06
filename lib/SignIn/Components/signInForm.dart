@@ -21,7 +21,7 @@ class _SignInPageState extends State<SignInForm> {
     // TODO: implement initState
     super.initState();
     _getData();
-    // _check();
+    _check();
   }
 
   _getData() async {

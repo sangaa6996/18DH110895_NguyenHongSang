@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/widgets.dart';
+import 'package:nguyenhongsang_18dh110895/detail/productpage.dart';
 import 'package:nguyenhongsang_18dh110895/models/products.dart';
 import 'package:nguyenhongsang_18dh110895/models/utilities.dart';
 
 class ProductPopular extends StatelessWidget {
   final products = Products.init();
-
 
   @override
   Widget build(BuildContext context) {
@@ -18,18 +18,25 @@ class ProductPopular extends StatelessWidget {
         children: [
           Row(
             children: [
-              Expanded(child: Text('Popular Products ', style: TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.green),)),
-              Text('See more',
-                style: TextStyle(fontSize: 16, color: Colors.lightGreen),),
+              Expanded(
+                  child: Text(
+                'Popular Products ',
+                style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.green),
+              )),
+              Text(
+                'See more',
+                style: TextStyle(fontSize: 16, color: Colors.lightGreen),
+              ),
             ],
           ),
-          SizedBox(height: 10,),
+          SizedBox(
+            height: 10,
+          ),
           Container(
-              child:
-              GridView.builder(
+              child: GridView.builder(
                   scrollDirection: Axis.vertical,
                   shrinkWrap: true,
                   primary: false,
@@ -38,59 +45,57 @@ class ProductPopular extends StatelessWidget {
                       crossAxisCount: 3,
                       mainAxisSpacing: 10,
                       crossAxisSpacing: 10,
-                      childAspectRatio: 0.7
-
-                  ),
+                      childAspectRatio: 0.7),
                   itemBuilder: (context, index) {
                     return ProductItem(
-                      product: products[index],
+                      products[index],
                     );
-                  })
-
-
-          ),
-
+                  })),
         ],
       ),
     );
-    
   }
 }
 
 class ProductItem extends StatelessWidget {
-  Products? product;
+  Products product;
 
-  ProductItem({this.product});
+  ProductItem(this.product);
 
   @override
   Widget build(BuildContext context) {
-    if(product!.image != null){
-
-    }
+    if (product.image != null) {}
     return GestureDetector(
       onTap: () {
         //print(product.id.toString());
-        Utilities.data.add(product);
-        // Navigator.pushNamed(context, ProductPage.routeName,
-        //     arguments: ProductDetailsArguments(product: product));
+        if (!Utilities.data.any((element) => element!.id == product.id)) {
+          Utilities.data.add(product);
+        }
+        print(!Utilities.data.any((element) => element!.id == product.id));
+        Navigator.pushNamed(context, ProductPage.routeName,
+            arguments: ProductDetailsArguments(product));
       },
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-
-          Image.asset(product!.image.toString(), fit: BoxFit.fill,),
+          Image.asset(
+            product.image.toString(),
+            fit: BoxFit.fill,
+          ),
           Row(
             children: [
-              Expanded(child: Text(product!.title.toString())),
+              Expanded(child: Text(product.title.toString())),
               Container(
                   padding: EdgeInsets.all(2),
                   decoration: BoxDecoration(
                       border: Border.all(color: Colors.white),
                       borderRadius: BorderRadius.circular(2),
-                      color: Colors.green
-                  ),
-                  child: Text(product!.price.toString(), style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.bold),)),
+                      color: Colors.green),
+                  child: Text(
+                    product.price.toString(),
+                    style: TextStyle(
+                        color: Colors.white, fontWeight: FontWeight.bold),
+                  )),
             ],
           )
         ],

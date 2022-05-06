@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:nguyenhongsang_18dh110895/homepage/component/fragment/account_detail.dart';
 import 'package:nguyenhongsang_18dh110895/homepage/component/fragment/favourite_fragment.dart';
 import 'package:nguyenhongsang_18dh110895/homepage/component/fragment/home_fragment.dart';
+import 'package:nguyenhongsang_18dh110895/homepage/component/fragment/order_detail.dart';
+import 'package:nguyenhongsang_18dh110895/homepage/component/fragment/order_fragment.dart';
 import 'package:nguyenhongsang_18dh110895/homepage/component/homeheader.dart';
 import 'package:nguyenhongsang_18dh110895/homepage/component/menuheader.dart';
 import 'package:nguyenhongsang_18dh110895/models/utilities.dart';
+import 'package:nguyenhongsang_18dh110895/order/orderPages.dart';
 
 class Body extends StatefulWidget {
   @override
@@ -21,7 +24,7 @@ class _BodyState extends State<Body> {
     List<Widget> screen = [
       HomeDetail(),
       FavoriteDetail(Utilities.data),
-      // NotificationDetail(),
+      OrderDetail(),
       HomeDetail(),
       AccountDetail()
     ];
@@ -57,7 +60,7 @@ class _BodyState extends State<Body> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.notifications),
-            label: 'Notification',
+            label: 'Orders',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.account_circle),
@@ -67,9 +70,7 @@ class _BodyState extends State<Body> {
       ),
       body: SafeArea(
         child: Column(
-          children: [
-            screen[selectIndex]
-          ],
+          children: [screen[selectIndex]],
         ),
       ),
     );

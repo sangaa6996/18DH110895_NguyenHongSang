@@ -31,6 +31,8 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_svg: ^1.0.3
+  fluttertoast: ^8.0.9
+  font_awesome_flutter: ^10.1.0
   http: ^0.13.4
   quiver: ^3.0.1+1
   shared_preferences: ^2.0.13

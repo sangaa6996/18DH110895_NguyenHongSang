@@ -6,7 +6,13 @@ class Products {
   double price;
   int cateId;
 
-  Products({required this.id, required this.title,required this.description,required this.image,required this.price,required this.cateId});
+  Products(
+      {required this.id,
+      required this.title,
+      required this.description,
+      required this.image,
+      required this.price,
+      required this.cateId});
 
   static List<Products> init() {
     List<Products> data = [

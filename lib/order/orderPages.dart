@@ -1,9 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:nguyenhongsang_18dh110895/cart/components/body.dart';
+import 'package:nguyenhongsang_18dh110895/order/components/body.dart';
 
-class CartPage extends StatelessWidget {
-  static String routeName = "/carts";
+class OrderPage extends StatelessWidget {
+  static String routeName = "/orders";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,7 +14,7 @@ class CartPage extends StatelessWidget {
           },
           child: Icon(Icons.arrow_back_ios),
         ),
-        title: Text("Cart Details"),
+        title: Text("Orders"),
       ),
       body: Body(),
     );
