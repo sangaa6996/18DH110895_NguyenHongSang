@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:nguyenhongsang_18dh110895/cart/cartpage.dart';
+import 'package:nguyenhongsang_18dh110895/search/searchpage.dart';
 
 class HomeHeader extends StatelessWidget {
   @override
@@ -13,7 +14,11 @@ class HomeHeader extends StatelessWidget {
                 filled: true,
                 fillColor: Colors.white,
                 hintText: "Search product",
-                prefixIcon: Icon(Icons.search)),
+                prefixIcon: GestureDetector(
+                    onTap: () {
+                      Navigator.pushNamed(context, SearchPage.routeName);
+                    },
+                    child: Icon(Icons.search))),
           ),
         ),
         GestureDetector(

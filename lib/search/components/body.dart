@@ -24,7 +24,7 @@ class _BodyState extends State<Body> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    _tags.addAll(['food', 'categories', 'bread']);
+    this._tags.addAll(['Food', 'Coffee', 'Bread']);
     textEditingController = new TextEditingController();
   }
 

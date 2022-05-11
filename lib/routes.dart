@@ -8,6 +8,7 @@ import 'package:nguyenhongsang_18dh110895/detail/productpage.dart';
 import 'package:nguyenhongsang_18dh110895/homepage/component/fragment/order_detail.dart';
 import 'package:nguyenhongsang_18dh110895/homepage/homepage.dart';
 import 'package:nguyenhongsang_18dh110895/order/orderPages.dart';
+import 'package:nguyenhongsang_18dh110895/search/searchpage.dart';
 
 final Map<String, WidgetBuilder> routes = {
   SplashPage.routeName: (context) => SplashPage(),
@@ -18,4 +19,5 @@ final Map<String, WidgetBuilder> routes = {
   ProductPage.routeName: (context) => ProductPage(),
   CartPage.routeName: (context) => CartPage(),
   OrderPage.routeName: (context) => OrderPage(),
+  SearchPage.routeName: (context) => SearchPage()
 };
