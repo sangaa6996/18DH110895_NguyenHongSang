@@ -5,6 +5,7 @@ import 'package:nguyenhongsang_18dh110895/cart/components/checkoutcart.dart';
 import 'package:nguyenhongsang_18dh110895/models/carts.dart';
 import 'package:nguyenhongsang_18dh110895/models/orders.dart';
 import 'package:nguyenhongsang_18dh110895/models/products.dart';
+import 'package:nguyenhongsang_18dh110895/order/orderHelpers.dart';
 
 class Body extends StatefulWidget {
   @override
@@ -12,12 +13,23 @@ class Body extends StatefulWidget {
 }
 
 class _BodyState extends State<Body> {
-  List<Orders> orderdetails = Orders.getOrders();
+  late List<Todo> orderdetails;
+  TodoProvider provider = TodoProvider();
 
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    _getData();
+  }
+
+  _getData() async {
+    orderdetails = [];
+    await provider.open();
+
+    var order = await provider.getAll();
+    orderdetails = order;
+    print(order[0].date);
   }
 
   @override
@@ -36,9 +48,10 @@ class _BodyState extends State<Body> {
                     children: [
                       GestureDetector(
                         child: OrderItem(
-                            orderdetails[index].date,
-                            orderdetails[index].total,
-                            orderdetails[index].totalQuantity),
+                          orderdetails[index].date,
+                          orderdetails[index].total,
+                          // orderdetails[index].totalQuantity
+                        ),
                         onTap: () {},
                       ),
                       Divider()
@@ -55,8 +68,8 @@ class _BodyState extends State<Body> {
 class OrderItem extends StatelessWidget {
   DateTime date;
   double total;
-  int totalQuantity;
-  OrderItem(this.date, this.total, this.totalQuantity);
+  // int totalQuantity;
+  OrderItem(this.date, this.total);
 
   @override
   Widget build(BuildContext context) {
@@ -66,7 +79,7 @@ class OrderItem extends StatelessWidget {
       child: Row(children: [
         Expanded(child: Text(formatDate(date, [yyyy, '-', mm, '-', dd]))),
         Spacer(),
-        Expanded(child: Text(totalQuantity.toString())),
+        // Expanded(child: Text(totalQuantity.toString())),
         Expanded(child: Text(total.toString())),
       ]),
     );

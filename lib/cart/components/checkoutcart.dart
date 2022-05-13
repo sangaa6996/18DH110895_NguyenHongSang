@@ -1,3 +1,4 @@
+import 'package:date_format/date_format.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -6,6 +7,7 @@ import 'package:nguyenhongsang_18dh110895/homepage/component/fragment/order_deta
 import 'package:nguyenhongsang_18dh110895/models/carts.dart';
 import 'package:nguyenhongsang_18dh110895/models/orders.dart';
 import 'package:nguyenhongsang_18dh110895/models/products.dart';
+import 'package:nguyenhongsang_18dh110895/order/orderHelpers.dart';
 import 'package:nguyenhongsang_18dh110895/order/orderPages.dart';
 
 class CheckOutCart extends StatelessWidget {
@@ -55,7 +57,12 @@ class CheckOutCart extends StatelessWidget {
                   textColor: Colors.white,
                   fontSize: 16.0);
               await Cart.Clear();
-              Navigator.pushNamed(context, OrderPage.routeName);
+              TodoProvider provider = new TodoProvider();
+              await provider.open();
+              Todo todo = Todo(order.total,
+                  formatDate(order.date, [yyyy, '-', mm, '-', dd]));
+              provider.insert(todo);
+              await Navigator.pushNamed(context, OrderPage.routeName);
             },
             color: Colors.green,
             textColor: Colors.white,
